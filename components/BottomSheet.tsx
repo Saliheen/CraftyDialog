@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Dimensions } from "react-native";
-import React, { useCallback, useImperativeHandle, forwardRef } from "react";
+import React, { useCallback, useImperativeHandle, forwardRef, ReactNode } from "react";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -12,6 +12,8 @@ import BackDrop from "./BackDrop";
 type Props = {
   snapTo: String;
   backgroundColor: String;
+  backdropColor:String;
+  children?:ReactNode
 };
 
 export interface BottomSheetsMethods {
@@ -22,7 +24,7 @@ export interface BottomSheetsMethods {
 const { height } = Dimensions.get("screen");
 
 const BottomSheet = forwardRef<BottomSheetsMethods, Props>(
-  ({ snapTo, backgroundColor }: Props, ref) => {
+  ({ snapTo, backgroundColor ,backdropColor,children}: Props, ref) => {
     const closeHeight = height;
     const percentage = parseFloat(snapTo.replace("%", "")) / 100;
     const openHeight = height - height * percentage;
@@ -97,6 +99,7 @@ const BottomSheet = forwardRef<BottomSheetsMethods, Props>(
           closeHeight={closeHeight}
           openHeight={openHeight}
           close={close}
+          backdropColor = {backdropColor}
         />
         <GestureDetector gesture={pan}>
           <Animated.View
@@ -109,6 +112,7 @@ const BottomSheet = forwardRef<BottomSheetsMethods, Props>(
             <View style={styles.lineContainer}>
               <View style={styles.line}></View>
             </View>
+            {children}
           </Animated.View>
         </GestureDetector>
       </>
