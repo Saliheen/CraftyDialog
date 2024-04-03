@@ -12,11 +12,8 @@ const Example = () => {
   const {width} = useWindowDimensions();
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image
-          source={require('../assets/Shoe.jpg')}
-          style={[styles.image, {width: width * 0.9}]}
-        />
+      <View style={[styles.democontainer,{width: width * 0.9}]}>
+        
       </View>
       <Text style={styles.title}>Lorem Ipsum</Text>
       <Text style={styles.text}>
@@ -40,13 +37,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#ffe7cf',
   },
-  imageContainer: {
-    borderRadius: 16,
-    overflow: 'hidden',
-  },
-  image: {
-    height: undefined,
-    aspectRatio: 16 / 9,
+  democontainer:{
+    height:150,
+    backgroundColor: '#df7007',
+    borderRadius:20
   },
   title: {
     fontSize: 26,
